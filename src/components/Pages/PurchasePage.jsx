@@ -10,7 +10,7 @@ const PurchasePage = () => {
         toast.success('Thanks for Purchasing this course!')
     }
     return (
-        <div>
+        <>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
@@ -45,7 +45,7 @@ const PurchasePage = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from './AuthProvider';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <div className='shadow-lg sticky top-0 z-50'>
             <div className="navbar dark:bg-slate-100 dark:text-gray-900 bg-base-100 w-full mx-auto font-semibold">
@@ -28,8 +36,16 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <NavLink to='/signIn' className="hover:bg-lime-700 px-4 py-3 rounded-md hover:text-gray-100">Sign In</NavLink>
-                    <NavLink to='/signUp' className="btn bg-lime-700 px-4 rounded-md text-gray-100">Sign Up</NavLink>
+                    {
+                        user?.uid ? <Link onClick={handleLogOut} to='/signIn' className='btn btn-dark mx-2'>Sign Out</Link>
+                            :
+                            <div className='mx-2'>
+                                <NavLink to='/signIn' className="hover:bg-lime-700 px-4 py-3 rounded-md hover:text-gray-100">Sign In</NavLink>
+                                <NavLink to='/signUp' className="btn bg-lime-700 px-4 rounded-md text-gray-100">Sign Up</NavLink>
+                            </div>
+                    }
+
+
                 </div>
                 <div className="dropdown dropdown-end ml-3">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -45,7 +61,7 @@ const Header = () => {
                             </NavLink>
                         </li>
                         <li><NavLink to=''>Settings</NavLink></li>
-                        <li><NavLink to=''>Sign Out</NavLink></li>
+                        <li><NavLink onClick={handleLogOut} to=''>Sign Out</NavLink></li>
                     </ul>
                 </div>
             </div>

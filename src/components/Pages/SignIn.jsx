@@ -1,13 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { AuthContext } from '../Common/AuthProvider';
 
 const SignIn = () => {
+
+    const [error, setError] = useState();
+    const [checked, setChecked] = useState();
+    const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('')
+                navigate('/')
+            })
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            })
+    }
+    const handleChecked = (e) => {
+        setChecked(e.target.checked);
+    }
+
+
     return (
         <div className='my-10'>
             <div className="mx-auto max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 shadow-lg">
                 <h1 className="text-2xl font-bold text-center">Sign In</h1>
-                <form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                <form onSubmit={handleSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
                         <label htmlFor='email' className="block dark:text-gray-400">Email</label>
                         <input type="email" name="email" placeholder="Your Email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-lime-400" required />
@@ -21,6 +51,9 @@ const SignIn = () => {
                         <div className="flex justify-end text-xs dark:text-gray-400">
                             <Link rel="noopener noreferrer" to="#">Forgot Password?</Link>
                         </div>
+                    </div>
+                    <div className="mb-3 text-gray-100" controlId="formBasicCheckbox">
+                        <input onClick={handleChecked} type="checkbox" label="Accept all condition!" required />
                     </div>
                     <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-lime-400">Sign in</button>
                 </form>
