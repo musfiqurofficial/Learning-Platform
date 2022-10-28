@@ -6,7 +6,7 @@ import Pdf from 'react-to-pdf'
 const ref = React.createRef();
 const SIngleCourse = () => {
     const singleCourse = useLoaderData();
-    const { _id, author, category_id, details, name, thumbnail_url, title, rating } = singleCourse;
+    const { _id, author, details, name, thumbnail_url, title, rating } = singleCourse;
 
     const ref = createRef();
     const options = {
