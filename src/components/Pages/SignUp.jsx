@@ -63,6 +63,7 @@ const SignUp = () => {
                             <input type="password" name="confirm" placeholder="Confirm Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-lime-400 mt-4" required />
                             <FaEyeSlash className='absolute right-2 top-7 text-lime-700'></FaEyeSlash>
                         </div>
+                        <p className='text-xs text-red-500'>{error}</p>
                         <div className="my-3 dark:text-gray-100" controlId="formBasicCheckbox">
                             <input onClick={handleChecked} type="checkbox" label="Accept all condition!" required />
                         </div>
