@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 import { FaUserTie } from 'react-icons/fa';
+import ReactSwitch from 'react-switch';
+import { ThemContext } from '../../App';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -11,6 +13,7 @@ const Header = () => {
             .then(() => { })
             .catch(error => console.error(error))
     }
+    const { theme, themToggel } = useContext(ThemContext)
     return (
         <div className='shadow-lg sticky top-0 z-50'>
             <div className="navbar dark:bg-slate-100 dark:text-gray-900 bg-base-100 w-full mx-auto font-semibold">
@@ -37,7 +40,10 @@ const Header = () => {
                     </ul>
                 </div>
                 <div>
-                    <input type="checkbox" className="toggle" checked />
+                    <div className='switeh flex items-center w-100% gap-2'>
+                        <label className='text-sm text-amber-600'>{theme === 'light' ? "Light" : "Dark"}</label>
+                        <ReactSwitch onChange={themToggel} checked={theme === "light"}></ReactSwitch>
+                    </div>
                 </div>
                 <div className="navbar-end">
                     {
