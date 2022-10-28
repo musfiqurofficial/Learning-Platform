@@ -36,6 +36,9 @@ const Header = () => {
                         <li className='mx-2 '><NavLink to='blog'>Blog</NavLink></li>
                     </ul>
                 </div>
+                <div>
+                    <input type="checkbox" className="toggle" checked />
+                </div>
                 <div className="navbar-end">
                     {
                         user?.uid ? <Link onClick={handleLogOut} to='/signIn' className='btn btn-dark mx-2'>Sign Out</Link>

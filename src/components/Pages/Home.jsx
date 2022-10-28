@@ -1,13 +1,13 @@
 import React from 'react';
 import Lottie from 'lottie-react'
 import topsvg from '../../assets/topsvg.json'
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const Home = () => {
     return (
         <div>
             <div className='w-10/12 mx-auto'>
-                <div className="bg-base-200">
+                <div className="bg-base-300">
                     <div className="hero-content flex-col lg:flex-row-reverse">
                         <Lottie animationData={topsvg} loop={true} />
                         <div>

@@ -1,7 +1,9 @@
 
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "../components/Common/PrivateRoute";
+import Blog from "../components/Pages/Blog";
 import Courses from "../components/Pages/Courses";
+import FAQ from "../components/Pages/FAQ";
 import Home from "../components/Pages/Home";
 import PurchasePage from "../components/Pages/PurchasePage";
 import SignIn from "../components/Pages/SignIn";
@@ -38,6 +40,14 @@ export const routes = createBrowserRouter([
                 path: '/courses/cs/:id',
                 element: <PrivateRoute><PurchasePage></PurchasePage></PrivateRoute>,
                 loader: ({ params }) => fetch(`https://assingment-10-server-alpha.vercel.app/courses/cs/${params.id}`),
+            },
+            {
+                path: '/faq',
+                element: <FAQ></FAQ>,
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>,
             },
             {
                 path: '/signIn',
