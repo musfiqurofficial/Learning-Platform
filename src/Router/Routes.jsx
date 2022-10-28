@@ -26,18 +26,18 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/courses',
-                loader: () => fetch(`http://localhost:5000/courses`),
+                loader: () => fetch(`https://assingment-10-server-alpha.vercel.app/courses`),
                 element: <Courses></Courses>,
             },
             {
                 path: '/courses/:id',
                 element: <SIngleCourse></SIngleCourse>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`),
+                loader: ({ params }) => fetch(`https://assingment-10-server-alpha.vercel.app/courses/${params.id}`),
             },
             {
                 path: '/courses/cs/:id',
                 element: <PrivateRoute><PurchasePage></PurchasePage></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/cs/${params.id}`),
+                loader: ({ params }) => fetch(`https://assingment-10-server-alpha.vercel.app/courses/cs/${params.id}`),
             },
             {
                 path: '/signIn',

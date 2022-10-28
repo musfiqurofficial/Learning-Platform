@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../Common/AuthProvider';
 
 const SignUp = () => {
-
+    const { createUser } = useContext(AuthContext);
+    const [checked, setChecked] = useState();
     const [error, setError] = useState();
     const [err, setErr] = useState();
-    const { createUser } = useContext(AuthContext);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -42,6 +42,10 @@ const SignUp = () => {
     }
 
 
+    const handleChecked = (e) => {
+        setChecked(e.target.checked);
+    }
+
     return (
         <div className='my-10'>
             <div className="mx-auto max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 shadow-lg">
@@ -59,8 +63,11 @@ const SignUp = () => {
                             <input type="password" name="confirm" placeholder="Confirm Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-lime-400 mt-4" required />
                             <FaEyeSlash className='absolute right-2 top-7 text-lime-700'></FaEyeSlash>
                         </div>
+                        <div className="my-3 dark:text-gray-100" controlId="formBasicCheckbox">
+                            <input onClick={handleChecked} type="checkbox" label="Accept all condition!" required />
+                        </div>
                     </div>
-                    <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-lime-400">Sign Up</button>
+                    <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-lime-400" disabled={!checked}>Sign Up</button>
                 </form>
                 <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

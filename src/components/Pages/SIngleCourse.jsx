@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaFilePdf } from 'react-icons/fa';
+import Pdf from 'react-to-pdf'
 
+const ref = React.createRef();
 const SIngleCourse = () => {
     const singleCourse = useLoaderData();
     const { _id, author, category_id, details, name, thumbnail_url, title, rating } = singleCourse;
+
+    const ref = createRef();
+    const options = {
+        orientation: 'landscape',
+
+    };
     return (
-        <div className='w-full'>
+        <div ref={ref} className='w-full'>
+            <div className='btn'>
+                <Pdf targetRef={ref} filename="code-example.pdf">
+                    {({ toPdf }) => <button onClick={toPdf}><p className='flex gap-1'>Download <FaFilePdf></FaFilePdf></p></button>}
+                </Pdf>
+            </div>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src={thumbnail_url} className="max-w-sm rounded-lg shadow-2xl" alt='' />

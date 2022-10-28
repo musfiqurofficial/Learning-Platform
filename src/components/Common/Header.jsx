@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
+import { FaUserTie } from 'react-icons/fa';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -48,9 +49,11 @@ const Header = () => {
 
                 </div>
                 <div className="dropdown dropdown-end ml-3">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                    <label tabIndex={0} className="btn btn-ghost btn-circle tooltip tooltip-bottom avatar" data-tip={user?.displayName ? user.displayName : 'Name not found'}>
                         <div className="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" alt='' />
+                            {
+                                user?.photoURL ? <img src={user?.photoURL} alt='' /> : <FaUserTie className='w-full'></FaUserTie>
+                            }
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content  shadow w-52 ">

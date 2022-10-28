@@ -13,7 +13,7 @@ const Home = () => {
                         <div>
                             <h1 className="text-5xl font-bold">Welcome to Geeks UI Learning Application</h1>
                             <p className="py-6">Hand-picked Instructor and expertly crafted courses, designed for the modern students and entrepreneur.</p>
-                            <Link to='/courses'><button className="btn btn-primary">Get Started</button></Link>
+                            <Link to='/courses'><button className="btn btn-primary">Courses</button></Link>
                         </div>
                     </div>
                 </div>
